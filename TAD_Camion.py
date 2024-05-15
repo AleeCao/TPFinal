@@ -7,7 +7,8 @@ def crearCamion (placa, origen, destino):
         "destino": destino,
         "hora_salida": "",
         "hora_llegada": "", 
-        "tiempo_estimado": ""
+        "tiempo_estimado": "",
+        "tiempo_real": ""
     }
     return camion
 

@@ -10,9 +10,9 @@ def crearCamion (placa, origen, destino, hora_salida, hora_llegada, tiempo_estim
     return camion
 
 def cargarCamiones(camiones):
-    camion1 = crearCamion("ABC123", "Bodega 1", "Bodega 2", "08:00", "10:00", "02:00")
-    camion2 = crearCamion("DEF456", "Bodega 3", "Bodega 4", "08:30", "12:00", "03:30")
-    camion3 = crearCamion("GHI789", "Bodega 5", "Bodega 6", "12:00", "16:00", "04:00")
+    camion1 = crearCamion("ABC548", "Bodega 1", "Bodega 2", "08:00", "10:00", "02:00")
+    camion2 = crearCamion("AAF456", "Bodega 3", "Bodega 4", "08:30", "12:00", "03:30")
+    camion3 = crearCamion("LSO789", "Bodega 5", "Bodega 6", "12:00", "16:00", "04:00")
     camion4 = crearCamion("JKL012", "Bodega 7", "Bodega 8", "10:00", "16:15", "06:15")
     camion5 = crearCamion("MNO345", "Bodega 9", "Bodega 10", "09:45", "18:00", "08:15")
     camion6 = crearCamion("PQR678", "Bodega 11", "Bodega 12", "10:33", "20:00", "09:27")
