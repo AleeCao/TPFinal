@@ -1,11 +1,16 @@
+from datetime import datetime, date 
+
 def crearCamion (placa, origen, destino, hora_salida, hora_llegada, tiempo_estimado):
+    horaSalida = str(date.today()) + ' ' + hora_salida
+    horaLlegada = str(date.today()) + ' ' + hora_llegada
+    tiempoEstimado = str(date.today()) + ' ' + tiempo_estimado
     camion = {
         "placa": placa,
         "origen": origen,
         "destino": destino,
-        "hora_salida": hora_salida,
-        "hora_llegada": hora_llegada, 
-        "tiempo_estimado": tiempo_estimado
+        "hora_salida": datetime.strptime(horaSalida,'%Y-%m-%d %H:%M'),
+        "hora_llegada": datetime.strptime(horaLlegada, '%Y-%m-%d %H:%M'), 
+        "tiempo_estimado": datetime.strptime(tiempoEstimado, '%Y-%m-%d %H:%M'),
     }
     return camion
 
@@ -30,4 +35,3 @@ def cargarCamiones(camiones):
     camiones.append(camion8)
     camiones.append(camion9)
     camiones.append(camion10)
-    return camiones

@@ -25,11 +25,13 @@ while not salida:
         if opcion2 == 'a':
             placa = input('Ingrese la placa del camión: ')
             salida = input('Ingrese la hora de salida: ')
-            registrarSalida(placa, camiones, salida)
-        #elif opcion == 'b':
-            #placa = input('Ingrese la placa del camión: ')
-            #llegada = input('Ingrese la hora de llegada: ')
-            #print(registrarLlegada(placa, camiones, llegada))
+            tiempoEst = input('Ingrese el tiempo estimado de viaje: ')
+            registrarSalida(placa, camiones, salida, tiempoEst)
+        elif opcion == 'b':
+            placa = input('Ingrese la placa del camión: ')
+            atributo = input('Ingrese el atributo a modificar: ')
+            valor = input('Ingrese el nuevo valor: ')
+            print(registrarLlegada(placa, camiones, atributo, valor))
         elif opcion == 'c':
             placa = input('Ingrese la placa del camión: ')
             eliminarCamion(placa ,camiones)
@@ -38,20 +40,29 @@ while not salida:
         llegada = input('Ingrese la hora de llegada: ')
         registrarLlegada(placa, camiones, llegada)
     elif opcion == 'c':
-        pp.pprint(listarCamiones(camiones))
+        for camion in camiones:
+            for keys, value in camion.items():
+                print(keys,':', value)
+            print('====================')
     elif opcion == 'd':
         print('Informe de movimientos por punto de distribución')
     elif opcion == 'e':
-        pp.pprint(listarMayAct(camiones))
+        mayAct = listarMayAct(camiones)
+        for camion in mayAct:
+            for keys, value in camion.items():
+                print(keys,':', value)
+            print('====================')
     elif opcion == 'f':
-        print('Eliminar camiones por rango de tiempo')
+        limite = input('Ingrese la hora de llegada limite: ')
+        eliminarCamionXRango(camiones, limite)
     elif opcion == 'g':
         print('Cola de camiones que superan tiempo estimado')
     elif opcion == 'h':
         placa = input('Ingrese la placa del camión: ')
         origen = input('Ingrese el lugar de origen: ')
         destino = input('Ingrese el lugar de destino: ')
-        crearCamion(placa, origen, destino)
+        camionX = crearCamion(placa, origen, destino)
+        camiones.append(camionX)
     elif opcion == 'i':
         salida = True
     else:

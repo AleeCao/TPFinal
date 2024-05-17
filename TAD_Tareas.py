@@ -2,11 +2,13 @@ import pprint
 from datetime import datetime, date 
 pp = pprint.PrettyPrinter(depth=4)
 
-def registrarSalida(placa, camiones, salida):
+def registrarSalida(placa, camiones, salida, tiempo_estimado):
     horasalida = str(date.today()) + ' ' + salida
+    tiempoEstimado = str(date.today()) + ' ' + tiempo_estimado
     for camion in camiones:
         if placa == camion["placa"]:
             camion["hora_salida"] = datetime.strptime(horasalida,'%Y-%m-%d %H:%M')
+            camion["tiempo_estimado"] = datetime.strptime(tiempoEstimado,'%Y-%m-%d %H:%M')
     return "El camión no existe"
 
 def eliminarCamion(placa, camiones):
@@ -41,3 +43,16 @@ def listarMayAct(camiones):
         if (camion['hora_salida'] >= horario1 and camion['hora_salida'] <= horario2) or (camion['hora_salida'] >= horario3 and camion['hora_salida'] <= horario4):
             activos.append(camion)
     return activos
+
+def modificarCamion(placa, camiones, atributo, valor):
+    for camion in camiones:
+        if placa == camion["placa"]:
+            camion[atributo] = valor
+            return "Camión modificado"
+        
+def eliminarCamionXRango(camiones, limite):
+    hora1 = str(date.today()) + ' ' + limite
+    horario1 = datetime.strptime(hora1, '%Y-%m-%d %H:%M')
+    for camion in camiones:
+        if camion['hora_llegada'] >= horario1:
+            camiones.remove(camion)
