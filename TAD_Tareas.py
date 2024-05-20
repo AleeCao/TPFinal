@@ -9,6 +9,14 @@ def registrarSalida(placa, camiones, salida, tiempo_estimado):
         if placa == camion["placa"]:
             camion["hora_salida"] = datetime.strptime(horasalida,'%Y-%m-%d %H:%M')
             camion["tiempo_estimado"] = datetime.strptime(tiempoEstimado,'%Y-%m-%d %H:%M')
+            return "Salida registrada"
+    return "El camión no existe"
+
+def modificarCamion(placa, camiones, atributo, valor):
+    for camion in camiones:
+        if placa == camion["placa"]:
+            camion[atributo] = valor
+            return "Camión modificado"
     return "El camión no existe"
 
 def eliminarCamion(placa, camiones):
@@ -24,6 +32,7 @@ def registrarLlegada(placa, camiones, llegada):
         if placa == camion["placa"]:
             camion["hora_llegada"] = datetime.strptime(horallegada, '%Y-%m-%d %H:%M')
             camion['tiempo_real'] = camion['hora_llegada'] - (camion['hora_salida'])
+            return "Llegada registrada"
     return "El camión no existe"
 
 def listarCamiones(camiones):
@@ -40,19 +49,23 @@ def listarMayAct(camiones):
     horario3 = datetime.strptime(str(date.today()) + ' 14:00', '%Y-%m-%d %H:%M')
     horario4 = datetime.strptime(str(date.today()) + ' 18:00', '%Y-%m-%d %H:%M')
     for camion in camiones:
-        if (camion['hora_salida'] >= horario1 and camion['hora_salida'] <= horario2) or (camion['hora_salida'] >= horario3 and camion['hora_salida'] <= horario4):
+        if ((camion['hora_llegada'] >= horario1 and camion['hora_llegada'] <= horario2) or (camion['hora_llegada'] >= horario3 and camion['hora_llegada'] <= horario4)):
             activos.append(camion)
     return activos
-
-def modificarCamion(placa, camiones, atributo, valor):
-    for camion in camiones:
-        if placa == camion["placa"]:
-            camion[atributo] = valor
-            return "Camión modificado"
         
 def eliminarCamionXRango(camiones, limite):
-    hora1 = str(date.today()) + ' ' + limite
-    horario1 = datetime.strptime(hora1, '%Y-%m-%d %H:%M')
+    horario1 = datetime.strptime(str(date.today()) + ' ' + limite, '%Y-%m-%d %H:%M')
+    i = 0
+    while i < len(camiones):
+        if (camiones[i]['hora_llegada'] >= horario1):
+            camiones.remove(camiones[i])
+            i -= 1
+        i += 1
+    return "Camiones eliminados"
+        
+def colaSupTmpEst(camiones):
+    activos = []
     for camion in camiones:
-        if camion['hora_llegada'] >= horario1:
-            camiones.remove(camion)
+        if (camion['tiempo_real'] > (camion['tiempo_estimado'])):
+            activos.append(camion)
+    return activos
