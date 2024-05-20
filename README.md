@@ -29,3 +29,5 @@ camiones que han ingresado al centro logístico después de un horario específi
 espacio en la base de datos.
 - g. Generar una cola de camiones que superan el tiempo estimado de viaje. Listar la cola cada vez
 que se elija esta opción (tengan cuidado de no dejar la cola vacía al terminar de listar).
+
+> La consigna del ejercicio era hacerlo solo usando Python y sus estructuras basicas
